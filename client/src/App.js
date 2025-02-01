@@ -101,25 +101,25 @@ function App() {
 
   async function createEvent(dateString, eventStringName, eventStringDescription) {
     try {
-      // Check if session exists and has the required fields
+      // check if session exists and has the required fields
       if (!session || !session.provider_token) {
         throw new Error("Missing or invalid session. Ensure you are logged in.");
       }
 
-      // Validate that the date is in a correct format
+      // make sure date is in a correct format
       const startDate = new Date(dateString);
       const isoStartDate = startDate.toISOString(); // Convert to ISO 8601 format
   
-      // Create the event object
+      // create the event object
       const event = {
         summary: eventStringName || "",
         description: eventStringDescription || "",
         start: {
           dateTime: isoStartDate,
-          timeZone: Intl.DateTimeFormat().resolvedOptions().timeZone, // Use client's timezone
+          timeZone: Intl.DateTimeFormat().resolvedOptions().timeZone, // use user's timezone
         },
         end: {
-          dateTime: new Date(startDate.getTime() + 3600000).toISOString(), // End time 1 hour after start
+          dateTime: new Date(startDate.getTime() + 3600000).toISOString(), // end time 1 hour after start
           timeZone: Intl.DateTimeFormat().resolvedOptions().timeZone,
         },
       };
