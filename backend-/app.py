@@ -57,3 +57,6 @@ async def detect_date(input_data: TextInput):
         return {"events": result}
     else:
         return {"message": "No dates found"}
+
+if __name__ == "__main__":
+    uvicorn.run(app, host="0.0.0.0", port=int(os.getenv("PORT", 8000)))
